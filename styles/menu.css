@@ -8,7 +8,7 @@
 	text-decoration: none;
   	text-transform: uppercase;
 	color:black;
-	box-shadow: 5px 5px 20px black;
+	
 	position: relative;
 }
 
@@ -16,7 +16,7 @@ button.center{
 	width: 6rem;
 	height: 3rem;
 	margin-top: 1rem;
-	
+	box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
 }
 
 #title{
