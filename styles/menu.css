@@ -13,10 +13,10 @@
 }
 
 button.center{
-	width: 6rem;
+	width: 9rem;
 	height: 3rem;
 	margin-top: 1rem;
-	box-shadow: 3px 1px 0px 0px, 4px 2px 0px 0px, 5px 3px 0px 0px, 4px 6px 0px 0px, 7px 5px 0px 0px;
+	box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
 }
 
 #title{
