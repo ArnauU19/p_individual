@@ -5,16 +5,20 @@
 	font-family: "Open Sans", sans-serif;
 	font-size: 16px;
 	letter-spacing: 2px;
-	color:blue;
+	color:black;
+	position: relative;
 }
 
 button.center{
 	width: 6rem;
 	height: 3rem;
 	margin-top: 1rem;
+	color:blue;
 }
 
 #title{
+	font-family: "Open Sans", sans-serif;
+	font-size: 32px;
 	color:red;
 	text-align: center;
 }
