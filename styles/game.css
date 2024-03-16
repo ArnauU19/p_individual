@@ -1,7 +1,11 @@
-#titleJ{
-
-
-    width: 10rem;
-    height: 5rem;
-
+#titleG{
+    background-color: red;
+    border: 1px solid #000;
+    border-radius: 4px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Open Sans", sans-serif;
+	font-size: 64px;
+	box-shadow: #fff 4px 4px; 
+	text-align: center;
 }
