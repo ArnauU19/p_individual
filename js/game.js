@@ -1,5 +1,6 @@
 import { game as gController } from "./memory.js";
 
+
 var game = $('#game');
 
 gController.init(updateSRC).forEach(function(card, indx){

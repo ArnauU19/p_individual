@@ -11,16 +11,13 @@
 }
 
 #game{
-	width: 80%; 
+	place-items: center;
+	margin:auto;
+	width: auto; 
     border: 1px solid #ccc; 
 	display: inline-block;
-
-}
-
-#card{
-	print("daf");
 	width: 200px; 
-	margin-left: 20px;
+	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid red;
 }
+

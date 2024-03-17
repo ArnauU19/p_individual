@@ -4,8 +4,8 @@ var options = function(){
         difficulty:'normal'
     };
     
-    var pairs = $('#pairs');
-    var difficulty = $('#dif');
+    var pairs = options.pairs;
+    var difficulty = options.difficulty;
 
     var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
     pairs.val(options.pairs);
