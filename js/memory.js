@@ -18,10 +18,19 @@ export var game = function(){
         }
     };
 
-    var lastCard;
-    var pairs = 2;
-    var points = 100;
+    const default_options = {
+        pairs:2,
+        difficulty:'normal'
+    };
+    var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
 
+    var lastCard;
+    //var pairs = 2;
+    //var points = 100;
+    var difficulty=options.difficulty;
+    
+    var pairs=options.pairs;
+    
     return {
         init: function (call){
             var items = resources.slice(); // Copiem l'array
