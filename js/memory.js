@@ -8,7 +8,7 @@ export var game = function(){
         goBack: function (){
             setTimeout(() => {
                 this.current = back;
-                his.visible = false;
+                this.visible = false;
                 this.clickable = true;
                 this.callback();
             }, 1000);
@@ -27,17 +27,15 @@ export var game = function(){
     };
 
     var lastCard;
-    //var pairs = 2;
-    //
     var difficulty=options.difficulty;
     var pairs=options.pairs;
     var points = 100;
     var temps = 1000;
 
-    if (options.difficulty == 'eazy'){
+    if (difficulty == 'eazy'){
         temps = 6000;
     }
-    else if (options.difficulty == 'normal'){
+    else if (difficulty == 'normal'){
         temps = 2000;
     }
     else {
@@ -55,14 +53,14 @@ export var game = function(){
 
             var carta = items.map(item =>
             Object.create(card, {front: {value:item}, callback: {value:call}}));
-                carta.forEach( obj =>{
-                obj.current = obj.front;
-                obj.clickable = false; 
-                obj.visible = false; 
-                setTimeout(() => {   
-                    obj.current = back;
-                    obj.clickable = true;
-                    obj.callback()
+                carta.forEach( ob =>{
+                ob.current = ob.front;
+                ob.visible = false; 
+                ob.clickable = false; 
+                setTimeout(() => {    
+                    ob.clickable = true;
+                    ob.current = back;
+                    ob.callback()
                 }, temps);
             });    
             return carta;

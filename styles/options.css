@@ -1,0 +1,11 @@
+#titleO{
+    background-color: white;
+    border: 5px solid rgb(114, 138, 244);
+    border-radius: 4px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Open Sans", sans-serif;
+	font-size: 64px;
+	box-shadow: #000000 4px 4px; 
+	text-align: center;
+}
