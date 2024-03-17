@@ -1,11 +1,26 @@
 #titleG{
-    background-color: blue;
-    border: 1px solid blue;
+    background-color: white;
+    border: 5px solid rgb(114, 138, 244);
     border-radius: 4px;
 	margin-left: auto;
 	margin-right: auto;
 	font-family: "Open Sans", sans-serif;
 	font-size: 64px;
-	box-shadow: #fff 4px 4px; 
+	box-shadow: #000000 4px 4px; 
 	text-align: center;
+}
+
+#game{
+	width: 80%; 
+    border: 1px solid #ccc; 
+	display: inline-block;
+
+}
+
+#card{
+	print("daf");
+	width: 200px; 
+	margin-left: 20px;
+	margin-right: auto;
+	border: 1px solid red;
 }
