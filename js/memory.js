@@ -4,19 +4,19 @@ export var game = function(){
     const card = {
         current: back,
         see: false, 
-        clickable: true,
+        click: true,
         goBack: function (){
             setTimeout(() => {
                 this.current = back;
                 this.see = false;
-                this.clickable = true;
+                this.click = true;
                 this.callback();
             }, 1000);
         },
         goFront: function (){
             this.see = true;
             this.current = this.front;
-            this.clickable = false;
+            this.click = false;
             this.callback();
         }
     };
@@ -56,9 +56,9 @@ export var game = function(){
                 carta.forEach( o =>{
                 o.current = o.front;
                 o.see = false; 
-                o.clickable = false; 
+                o.click = false; 
                 setTimeout(() => {    
-                    o.clickable = true;
+                    o.click = true;
                     o.current = back;
                     o.callback()
                 }, temps);
@@ -67,7 +67,7 @@ export var game = function(){
             //return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
         },
         click: function (card){
-            if (!card.clickable) return;
+            if (!card.click) return;
             card.goFront();
             if (lastCard){ // Segona carta
                 if (card.front === lastCard.front){
