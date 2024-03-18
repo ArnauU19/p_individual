@@ -3,18 +3,18 @@ export var game = function(){
     const resources = ['../resources/cb.png', '../resources/co.png', '../resources/sb.png','../resources/so.png', '../resources/tb.png','../resources/to.png'];
     const card = {
         current: back,
-        visible: false, 
+        see: false, 
         clickable: true,
         goBack: function (){
             setTimeout(() => {
                 this.current = back;
-                this.visible = false;
+                this.see = false;
                 this.clickable = true;
                 this.callback();
             }, 1000);
         },
         goFront: function (){
-            this.visible = true;
+            this.see = true;
             this.current = this.front;
             this.clickable = false;
             this.callback();
@@ -53,14 +53,14 @@ export var game = function(){
 
             var carta = items.map(item =>
             Object.create(card, {front: {value:item}, callback: {value:call}}));
-                carta.forEach( ob =>{
-                ob.current = ob.front;
-                ob.visible = false; 
-                ob.clickable = false; 
+                carta.forEach( o =>{
+                o.current = o.front;
+                o.see = false; 
+                o.clickable = false; 
                 setTimeout(() => {    
-                    ob.clickable = true;
-                    ob.current = back;
-                    ob.callback()
+                    o.clickable = true;
+                    o.current = back;
+                    o.callback()
                 }, temps);
             });    
             return carta;
