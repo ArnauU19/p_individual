@@ -20,11 +20,12 @@ export var game = function(){
             this.callback();
         }
     };
-    var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
     const default_options = {
         pairs:2,
         difficulty:'normal'
     };
+    var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
+ 
 
     var lastCard;
     var difficulty=options.difficulty;
