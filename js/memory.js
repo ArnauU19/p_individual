@@ -3,12 +3,14 @@ export var game = function(){
     const resources = ['../resources/cb.png', '../resources/co.png', '../resources/sb.png','../resources/so.png', '../resources/tb.png','../resources/to.png'];
     const card = {
         current: back,
-        clickable: true,
+       // see: false//see new
+        clickable: true, 
         waiting: false,
         isDone: false,
         goBack: function (){
             setTimeout(() => {
                 this.current = back;
+               // this.see=false //new
                 this.clickable = true;
                 this.callback();
             }, 1000);

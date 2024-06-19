@@ -1,12 +1,19 @@
 addEventListener('load', function() {
-    document.getElementById('play').addEventListener('click', 
+    /*document.getElementById('play').addEventListener('click', 
     function(){
         sessionStorage.removeItem("save");
         window.location.assign("./html/game.html");
+    });*/
+
+    $('#play').on('click',function(){
+        sessionStorage.removeItem("save"); //this is new
+        window.location.assign("./html/game.html");
     });
 
-    document.getElementById('saves').addEventListener('click', 
-    function(){
+    //document.getElementById('saves').addEventListener('click', 
+    //function(){
+    $('#saves').on('click',function(){
+   
         fetch("./php/load.php",{
             method: "POST",
             body: "",
@@ -21,7 +28,7 @@ addEventListener('load', function() {
         .finally(()=>window.location.assign("./html/game.html"));
     });
 
-    document.getElementById('options').addEventListener('click', 
+    /*document.getElementById('options').addEventListener('click', 
     function(){
         window.location.assign("./html/options.html");
     });
@@ -29,5 +36,13 @@ addEventListener('load', function() {
     document.getElementById('exit').addEventListener('click', 
     function(){
         console.warn("No es pot sortir!");
+    });*/
+
+    $('#options').on('click',function(){
+        window.location.assign("./html/options.html");
     });
+    $('#exit').on('click',function(){
+        console.warn("No es pot sortir!");
+    });
+
 });

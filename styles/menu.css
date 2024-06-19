@@ -1,16 +1,31 @@
 #title, .center{
+	height: 6rem;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	letter-spacing: 10px;
+	text-decoration: none;
+  	text-transform: uppercase;	  	 	
+	box-shadow: 10px 25px 15px rgb(84, 43, 43); 
+	position: relative
 }
 
 button.center{
-	width: 6rem;
+	letter-spacing: 5px;
+	font-size: 24px;
+	width: 13rem;
 	height: 3rem;
 	margin-top: 1rem;
+	box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
 }
 
 #title{
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Open Sans", sans-serif;
+	font-size: 64px;
 	color:red;
 	text-align: center;
 }
