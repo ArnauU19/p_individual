@@ -155,8 +155,8 @@ export var game = function() {
             })
             .catch(err => {
                 console.log(err);
-                sessionStorage.save = json_partida; // Use sessionStorage instead of localStorage for save
-                console.log(sessionStorage.save);
+                localStorage.save = json_partida; // Use sessionStorage instead of localStorage for save
+                console.log(localStorage.save);
             })
             .finally(() => {
                 window.location.replace("../");
