@@ -4,7 +4,7 @@ export var game = function(){
     const card = {
         current: back,
        // see: false//see new
-        clickable: true, 
+        clickable: true,
         waiting: false,
         isDone: false,
         goBack: function (){
@@ -31,10 +31,12 @@ export var game = function(){
         }
     };
 
+
     var lastCard;
     var pairs = 2;
     var points = 100;
     var cards = []; // Llistat de cartes
+
 
     var mix = function(){
         var items = resources.slice(); // Copiem l'array
@@ -106,7 +108,9 @@ export var game = function(){
                 });
             });
 
+
             let json_partida = JSON.stringify(partida);
+
 
             fetch("../php/save.php",{
                 method: "POST",
