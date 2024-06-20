@@ -111,14 +111,14 @@ export var game = function() {
                 if (card.check(lastCard)) {
                     pairs--;
                     if (pairs <= 0) {
-                        alert("You won with " + points + " points!");
+                        alert("Has guanyat amb " + points + " punts!");
                         window.location.replace("../");
                     }
                 } else {
                     [card, lastCard].forEach(c => c.goBack());
                     points -= 25;
                     if (points <= 0) {
-                        alert("You lost");
+                        alert("Has perdut");
                         window.location.replace("../");
                     }
                 }
@@ -155,8 +155,8 @@ export var game = function() {
             })
             .catch(err => {
                 console.log(err);
-                localStorage.save = json_partida; // Use sessionStorage instead of localStorage for save
-                console.log(localStorage.save);
+                sessionStorage.save = json_partida; // Use sessionStorage instead of localStorage for save
+                console.log(sessionStorage.save);
             })
             .finally(() => {
                 window.location.replace("../");
