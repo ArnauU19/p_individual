@@ -1,6 +1,8 @@
 
 $('#play').on('click',function(){
-    window.location.assign("./html/game.html");
+    //window.location.assign("./html/game.html");
+    //window.location.assign("./html/mode_joc.html");
+    window.location.assign("./html/mode_joc.html");
 });
 $('#options').on('click',function(){
     window.location.assign("./html/options.html");
