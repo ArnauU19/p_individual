@@ -31,6 +31,7 @@ export var game = function(){
     var difficulty=options.difficulty;
     var pairs=options.pairs;
     var points = 100;
+<<<<<<< Updated upstream
     var temps = 1000;
 
     if (difficulty == 'eazy'){
@@ -66,6 +67,65 @@ export var game = function(){
             });    
             return carta;
             //return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+=======
+    var temps = getTemps(difficulty);
+    var cards = []; // List of cards
+
+    function getTemps(difficulty) {
+        if (difficulty === 'eazy') {
+            temps = 6000;
+        } else if (difficulty === 'normal') {
+            temps = 2000;
+        } else {
+            temps = 500;
+        }
+    }
+
+    var mix = function() {
+        var items = resources.slice(); // Copy the array
+        items.sort(() => Math.random() - 0.5); // Shuffle
+        items = items.slice(0, pairs); // Take the first
+        items = items.concat(items); // Duplicate
+        return items.sort(() => Math.random() - 0.5); // Shuffle again
+    }
+
+    return {
+        init: function(call) {
+            if (sessionStorage.save) { // Load game
+                let partida = JSON.parse(sessionStorage.save);
+                pairs = partida.pairs;
+                points = partida.points;
+                difficulty = partida.difficulty;  // Add this line
+                temps = getTemps(difficulty);
+                partida.cards.map(item => {
+                    let it = Object.create(card);
+                    it.front = item.front;
+                    it.current = item.current;
+                    it.isDone = item.isDone;
+                    it.waiting = item.waiting;
+                    it.callback = call;
+                    cards.push(it);
+                    if (it.current !== back && !it.waiting && !it.isDone) it.goBack();
+                    else if (it.waiting) lastCard = it;
+                });
+                return cards;
+            } else {
+                var items = mix();
+                var carta = items.map(item =>
+                    Object.create(card, { front: { value: item }, callback: { value: call } }));
+                carta.forEach(o => {
+                    o.current = o.front;
+                    o.see = false;
+                    o.clickable = false;
+                    setTimeout(() => {
+                        o.clickable = true;
+                        o.current = back;
+                        o.callback();
+                    }, temps);
+                });
+                return carta;
+            }
+>>>>>>> Stashed changes
         },
         click: function (card){
             if (!card.click) return;
