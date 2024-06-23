@@ -31,7 +31,6 @@ export var game = function(){
     var difficulty=options.difficulty;
     var pairs=options.pairs;
     var points = 100;
-<<<<<<< Updated upstream
     var temps = 1000;
 
     if (difficulty == 'eazy'){
