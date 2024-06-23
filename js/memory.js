@@ -67,7 +67,6 @@ export var game = function(){
             });    
             return carta;
             //return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
-=======
     var temps = getTemps(difficulty);
     var cards = []; // List of cards
 
@@ -125,7 +124,6 @@ export var game = function(){
                 });
                 return carta;
             }
->>>>>>> Stashed changes
         },
         click: function (card){
             if (!card.click) return;
