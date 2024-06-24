@@ -1,5 +1,6 @@
 export var game = function(){
-    const back = '../resources/back.png';
+    //la part de darrerra carta i part de davant
+    const back = '../resources/back.png'; 
     const resources = ['../resources/cb.png', '../resources/co.png', '../resources/sb.png','../resources/so.png', '../resources/tb.png','../resources/to.png'];
     const card = {
         current: back,
@@ -11,7 +12,7 @@ export var game = function(){
                 this.see = false;
                 this.click = true;
                 this.callback();
-            }, 1000);
+            }, 1000); //si volem que el delay al girar cartes depengui del temps canviar 1000 per var temps
         },
         goFront: function (){
             this.see = true;
@@ -31,15 +32,18 @@ export var game = function(){
     var difficulty=options.difficulty;
     var pairs=options.pairs;
     var points = 100;
-    var temps = 1000;
+    var temps = 1000; //temps que es mostren 2 cartes quan no coincideixen
 
+
+    //comprovar en quin mode estem jugant, si es el mode 1, aquesta dificultat,
+    //si es el mode 2, serà un altre llistat de if, else if...
     if (difficulty == 'eazy'){
         temps = 6000;
     }
     else if (difficulty == 'normal'){
         temps = 2000;
     }
-    else {
+    else if (difficulty == 'hard'){
         temps = 500;
     };
 
@@ -62,7 +66,7 @@ export var game = function(){
                     o.click = true;
                     o.current = back;
                     o.callback()
-                }, temps);
+                }, temps);//temps al crear les cartes
             });    
             return carta;
             //return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
@@ -75,20 +79,22 @@ export var game = function(){
                     pairs--;
                     if (pairs <= 0){
                         alert("Has guanyat amb " + points + " punts!");
+                        //si estem en el mode 2, ha de cargar partida, augmentant la dificultat
                         window.location.replace("../");
                     }
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
+                    points-=25;//el que es resta hauria de canviar amb la dificultat
                     if (points <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");
                     }
                 }
                 lastCard = null;
+            }else {
+                lastCard = card; // Primera carta
             }
-            else lastCard = card; // Primera carta
         }
     }
 }();

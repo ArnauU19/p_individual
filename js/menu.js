@@ -4,6 +4,9 @@ $('#play').on('click',function(){
     //window.location.assign("./html/mode_joc.html");
     window.location.assign("./html/mode_joc.html");
 });
+$('#puntuacio').on('click',function(){
+    window.location.assign("./html/puntuacio.html");
+});
 $('#options').on('click',function(){
     window.location.assign("./html/options.html");
 });
