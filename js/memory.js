@@ -59,59 +59,69 @@ export var game = function(){
             temps_ini = 500;
         };
     }else{
-        console.assert("mode 2 detectat", difficulty2)
+        //FUNCIONAAAAAAAA
+        //console.log("mode 2 detectat: ", difficulty2)
         switch (difficulty2) {
-            case 1:
-                console.assert("case 1")
+            case "1":
+                console.log("case 1")
                                     //tI, tE, pa, +P, -P
                 establir_dificultat2(6000,3000,2,10,20)
                 break
-            case 2:
+            case "2":
+                console.log("case 2")
                 establir_dificultat2(5000,3000,2,20,30)
                 break
-            case 3:
+            case "3":
+                console.log("case 3")
                 establir_dificultat2(4500,3000,2,25,40)
                 break
-            case 4:
+            case "4":
+                console.log("case 4")
                 establir_dificultat2(4500,2500,3,30,50)
                 break
-            case 5:
+            case "5":
+                console.log("case 5")
                 establir_dificultat2(4000,2500,3,35,60)
                 break
-            case 6:
+            case "6":
                 establir_dificultat2(3500,2500,3,40,60)
                 break
-            case 7:
+            case "7":
                 establir_dificultat2(3500,2500,4,45,70)
                 break
-            case 8:
-                establir_dificultat2(3000,2000,4,55,70)
+            case "8":
+                establir_dificultat2(3500,2000,4,55,70)
                 break
-            case 9:
-                establir_dificultat2(2500,2000,4,60,80)
+            case "9":
+                establir_dificultat2(3000,2000,4,60,80)
                 break
-            case 10:
+            case "10":
                 establir_dificultat2(2500,2000,5,65,90)
                 break
-            case 11:
+            case "11":
                 establir_dificultat2(2000,2000,5,70,100)
                 break
-            case 12:
+            case "12":
                 establir_dificultat2(1500,1000,5,75,120)
                 break
-            case 13:
+            case "13":
                 establir_dificultat2(1000,1000,6,80,140)
                 break
-            case 14:
+            case "14":
                 establir_dificultat2(500,500,6,85,150)
                 break
-            case 15:
+            case "15":
                 establir_dificultat2(500,500,6,90,160)
+                break
+            default:
+                //console.log("default: ", difficulty2)
+                //mateixa configuració que nivell 1
+                establir_dificultat2(6000,3000,2,10,20)
                 break
             
         }
 
-        console.log("dificultat mode 2");
+        //console.log("dificultat mode 2: ",difficulty2);
 
 
     }
@@ -162,13 +172,24 @@ export var game = function(){
                         //si estem en el mode 2, ha de cargar partida, augmentant la dificultat
                         if (isMode1){
                             window.location.replace("../");
-                            
                         }else {
+                            
                             //augemntar dificultat en opcions
-                            //cargar de nou aquesta escena
+                            var new_dif2= difficulty2+1;
+                            options.difficulty2=new_dif2;
+                            
+                            if(new_dif2>4){
+                                //guardar puntuació
+                                options.applyChanges();
+                                window.location.reload();
+                            }else{
+
+                            }
                             //if maxima dificultat 
                                 //guardar puntuació
                                 //window.location.replace("../");
+                            //else
+                                //cargar de nou aquesta escena
                         }
                     }
                 }
