@@ -1,0 +1,1 @@
+//hauria de ser una mena de for each llista mostrar
