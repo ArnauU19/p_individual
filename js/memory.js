@@ -23,18 +23,19 @@ export var game = function(){
     };
     const default_options = {
         pairs:2,
-        difficulty1:'normal'
+        difficulty1:'normal',
+        difficulty2:1
     };
     var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
  
 
     var lastCard;
     var difficulty1=options.difficulty;
-    var difficulty2=options.niv_difficulty;
+    var difficulty2=options.difficulty2;
     
     //VARIABLES només utilitzables en el mode1
     var pairs=options.pairs;
-    var points = 100;
+    var points = 100; //he de veure com guardo els punts cada vegada que he recargo en mode2, potser aixó m'ho sobrescriu
     var temps_ini = 1000; //temps que es mostren les cartes al crearles
 
 
@@ -58,22 +59,69 @@ export var game = function(){
             temps_ini = 500;
         };
     }else{
+        console.assert("mode 2 detectat", difficulty2)
         switch (difficulty2) {
-            case 0:
-
-                break
             case 1:
-
+                console.assert("case 1")
+                                    //tI, tE, pa, +P, -P
+                establir_dificultat2(6000,3000,2,10,20)
                 break
             case 2:
+                establir_dificultat2(5000,3000,2,20,30)
                 break
             case 3:
+                establir_dificultat2(4500,3000,2,25,40)
                 break
-
+            case 4:
+                establir_dificultat2(4500,2500,3,30,50)
+                break
+            case 5:
+                establir_dificultat2(4000,2500,3,35,60)
+                break
+            case 6:
+                establir_dificultat2(3500,2500,3,40,60)
+                break
+            case 7:
+                establir_dificultat2(3500,2500,4,45,70)
+                break
+            case 8:
+                establir_dificultat2(3000,2000,4,55,70)
+                break
+            case 9:
+                establir_dificultat2(2500,2000,4,60,80)
+                break
+            case 10:
+                establir_dificultat2(2500,2000,5,65,90)
+                break
+            case 11:
+                establir_dificultat2(2000,2000,5,70,100)
+                break
+            case 12:
+                establir_dificultat2(1500,1000,5,75,120)
+                break
+            case 13:
+                establir_dificultat2(1000,1000,6,80,140)
+                break
+            case 14:
+                establir_dificultat2(500,500,6,85,150)
+                break
+            case 15:
+                establir_dificultat2(500,500,6,90,160)
+                break
+            
         }
+
         console.log("dificultat mode 2");
 
 
+    }
+
+    function establir_dificultat2(a,b,c,d,e){
+        temps_ini=a
+        temps_error=b
+        pairs=c
+        sum_punts=d
+        desc_punts=e
     }
 
     return {
@@ -113,16 +161,21 @@ export var game = function(){
                         alert("Has guanyat amb " + points + " punts!");
                         //si estem en el mode 2, ha de cargar partida, augmentant la dificultat
                         if (isMode1){
+                            window.location.replace("../");
+                            
+                        }else {
                             //augemntar dificultat en opcions
                             //cargar de nou aquesta escena
-                        }else {
-                            window.location.replace("../");
+                            //if maxima dificultat 
+                                //guardar puntuació
+                                //window.location.replace("../");
                         }
                     }
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
                     points-=desc_punts;
+                    points+=sum_punts
                     //desc_punts canvia en el mode 2, punts que es descompta quan falles, default=25
                     if (points <= 0){
                         alert ("Has perdut");
