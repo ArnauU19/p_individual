@@ -60,12 +60,12 @@ export var game = function(){
         };
     }else{
         //FUNCIONAAAAAAAA
-        //console.log("mode 2 detectat: ", difficulty2)
+        console.log("mode 2 detectat: ", difficulty2)
         switch (difficulty2) {
             case "1":
                 console.log("case 1")
                                     //tI, tE, pa, +P, -P
-                establir_dificultat2(6000,3000,2,10,20)
+                establir_dificultat2(2000,3000,2,10,20)
                 break
             case "2":
                 console.log("case 2")
@@ -135,6 +135,15 @@ export var game = function(){
     }
 
     return {
+        //act_dif2: function(){
+        //    options = JSON.parse(localStorage.options||JSON.stringify(default_options));
+        //    var new_dif2= difficulty2+1;
+        //    options.difficulty2=new_dif2;
+        //    console.log("me donen ganes de plorar i pegar-me unt tiro")
+        //    options.applyChanges();
+        //},
+
+
         init: function (call){
             var items = resources.slice(); // Copiem l'array
             items.sort(() => Math.random() - 0.5); // Aleatòria
@@ -168,22 +177,32 @@ export var game = function(){
                     points+=sum_punts;
                     //augmentar punts jugador, ha fet una correcta convinació
                     if (pairs <= 0){
+                        
                         alert("Has guanyat amb " + points + " punts!");
                         //si estem en el mode 2, ha de cargar partida, augmentant la dificultat
                         if (isMode1){
                             window.location.replace("../");
                         }else {
-                            
+                            //var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
+                            //var new_dif2= difficulty2+1;
+                            //options.difficulty2+=1;
                             //augemntar dificultat en opcions
-                            var new_dif2= difficulty2+1;
-                            options.difficulty2=new_dif2;
-                            
-                            if(new_dif2>4){
+                            //options.applyChanges();
+                            //options.act_dif2()
+                            //options.act_dif2()
+
+
+                            difficulty2++;
+                            options.difficulty2=difficulty2;
+                            localStorage.setItem('options', JSON.stringify(options));
+                            if(difficulty2<5){
                                 //guardar puntuació
-                                options.applyChanges();
+                               
                                 window.location.reload();
                             }else{
-
+                                console.log("finish")
+                                //guardar puntuació
+                                window.location.replace("../")
                             }
                             //if maxima dificultat 
                                 //guardar puntuació
@@ -196,7 +215,7 @@ export var game = function(){
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
                     points-=desc_punts;
-                    points+=sum_punts
+                    //points+=sum_punts
                     //desc_punts canvia en el mode 2, punts que es descompta quan falles, default=25
                     if (points <= 0){
                         alert ("Has perdut");

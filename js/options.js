@@ -32,9 +32,6 @@ var options = function(){
     }
 }();
 
-
-
-
 $('#default').on('click',function(){
     options.defaultValues();
 });
