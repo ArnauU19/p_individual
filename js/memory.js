@@ -28,6 +28,9 @@ export var game = function(){
     };
     var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
  
+    if (!localStorage.originalDifficulty2) {
+        localStorage.originalDifficulty2 = options.difficulty2;
+    }
 
     var lastCard;
     var difficulty1=options.difficulty;
@@ -114,7 +117,7 @@ export var game = function(){
                 establir_dificultat2(500,500,6,90,160)
                 break
             default:
-                //console.log("default: ", difficulty2)
+                console.log("default: ", difficulty2)
                 //mateixa configuració que nivell 1
                 establir_dificultat2(6000,3000,2,10,20)
                 break
@@ -134,15 +137,14 @@ export var game = function(){
         desc_punts=e
     }
 
-    return {
-        //act_dif2: function(){
-        //    options = JSON.parse(localStorage.options||JSON.stringify(default_options));
-        //    var new_dif2= difficulty2+1;
-        //    options.difficulty2=new_dif2;
-        //    console.log("me donen ganes de plorar i pegar-me unt tiro")
-        //    options.applyChanges();
-        //},
+    function incrementDifficulty2() {
+        difficulty2 = parseInt(difficulty2) + 1;
+        options.difficulty2 = difficulty2;
+        localStorage.options = JSON.stringify(options);
+    }
 
+
+    return {
 
         init: function (call){
             var items = resources.slice(); // Copiem l'array
@@ -192,16 +194,16 @@ export var game = function(){
                             //options.act_dif2()
 
 
-                            difficulty2++;
-                            options.difficulty2=difficulty2;
-                            localStorage.setItem('options', JSON.stringify(options));
-                            if(difficulty2<5){
+                            incrementDifficulty2();
+                            //localStorage.setItem('options', JSON.stringify(options));
+                            if(difficulty2<=5){
                                 //guardar puntuació
                                
                                 window.location.reload();
                             }else{
                                 console.log("finish")
                                 //guardar puntuació
+                                localStorage.removeItem('originalDifficulty2');
                                 window.location.replace("../")
                             }
                             //if maxima dificultat 
@@ -219,6 +221,7 @@ export var game = function(){
                     //desc_punts canvia en el mode 2, punts que es descompta quan falles, default=25
                     if (points <= 0){
                         alert ("Has perdut");
+                        localStorage.removeItem('originalDifficulty2');
                         window.location.replace("../");
                         //si estem en el mode 2, guarda la puntuació en un ranking, puntuacio.js i puntaucio.html
                     }
