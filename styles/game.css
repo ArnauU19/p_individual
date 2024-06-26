@@ -11,6 +11,7 @@
 }
 
 #game{
+	
 	place-items: center;
 	margin:auto;
 	width: auto; 
@@ -21,3 +22,8 @@
 	margin-right: auto;
 }
 
+.container{
+	display: flex;
+	justify-content: center;
+	Width: 100%;
+}
