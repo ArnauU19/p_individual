@@ -30,7 +30,6 @@ export var game = function(){
  
     if (!localStorage.oriDifficulty2) {
        localStorage.oriDifficulty2 = options.difficulty2;
-       console.log("entres a mirar dificultat");
     }
    
 
@@ -45,7 +44,6 @@ export var game = function(){
     
     if (!localStorage.totalpoints) {
         localStorage.totalpoints = points;
-        console.log("totalpoints ...: ", localStorage.totalpoints);
     }
 
     //VARIABLES només utilitzades en el mode2, també utilitza les del mode 1
@@ -172,8 +170,6 @@ export var game = function(){
                 }, temps_ini);//temps al crear les cartes
             });    
             return carta;
-            //ja estava comentada aquesta linia abans
-            //return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
         },
         click: function (card){
             if (!card.click) return;
@@ -203,27 +199,26 @@ export var game = function(){
 
 
                             incrementDifficulty2();
-                            //localStorage.setItem('options', JSON.stringify(options));
-                            if(difficulty2<=3){
-                                //guardar puntuació
-                               
+                            if(difficulty2<=3){                    
                                 window.location.reload();
                             }else{
                                 console.log("finish");
+                                localStorage.scores=localStorage.getItem('totalpoints');
                                 //guardar puntuació
                                 console.log("OPTd2: ", options.difficulty2, "LSd2: ",localStorage.oriDifficulty2 );
                                 resetDifficulty2();
+                                
                                 console.log("no ha petat");
                                 localStorage.removeItem('oriDifficulty2');
                                 localStorage.removeItem('totalpoints');
 
                                 window.location.replace("../");
                             }
-                            //if maxima dificultat 
+                            //if no maxima dificultat 
+                                //cargar de nou aquesta escena
+                            //else
                                 //guardar puntuació
                                 //window.location.replace("../");
-                            //else
-                                //cargar de nou aquesta escena
                         }
                     }
                 }
@@ -240,7 +235,6 @@ export var game = function(){
                     //desc_punts canvia en el mode 2, punts que es descompta quan falles, default=25
                     if (points <= 0){
                         alert ("Has perdut");
-                        //localStorage.removeItem('originalDifficulty2');
                         if (!isMode1){
                             resetDifficulty2();
                             localStorage.removeItem('oriDifficulty2');
