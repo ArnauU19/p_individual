@@ -30,6 +30,7 @@ export var game = function(){
  
     if (!localStorage.oriDifficulty2) {
        localStorage.oriDifficulty2 = options.difficulty2;
+       console.log("entres a mirar dificultat");
     }
    
 
@@ -75,7 +76,7 @@ export var game = function(){
             establir_dificultat2(2000,3000,2,10,20);
         }else if(difficulty2==2){
             console.log("case 2.2 ",pairs);
-            establir_dificultat2(5000,3000,3,20,30);
+            establir_dificultat2(5000,3000,2,20,30);
         }else if(difficulty2==3){
             console.log("case 3.3 ",pairs);
             establir_dificultat2(4500,3000,2,25,40);
@@ -184,7 +185,7 @@ export var game = function(){
                         points+=sum_punts;
                     }else{
                         console.log("totalpoints +: ", localStorage.totalpoints);
-                        localStorage.totalpoints+=sum_punts;
+                        localStorage.totalpoints=parseInt(localStorage.totalpoints)+sum_punts;
                     }
 
                     
@@ -199,13 +200,6 @@ export var game = function(){
                         if (isMode1){
                             window.location.replace("../");
                         }else {
-                            //var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
-                            //var new_dif2= difficulty2+1;
-                            //options.difficulty2+=1;
-                            //augemntar dificultat en opcions
-                            //options.applyChanges();
-                            //options.act_dif2()
-                            //options.act_dif2()
 
 
                             incrementDifficulty2();
@@ -239,7 +233,7 @@ export var game = function(){
                         points-=desc_punts;
                     }else{
                         console.log("totalpoints -: ", localStorage.totalpoints);
-                        localStorage.totalpoints-=desc_punts;
+                        localStorage.totalpoints=parseInt(localStorage.totalpoints)-desc_punts;
                     }
                     
                     //points+=sum_punts
