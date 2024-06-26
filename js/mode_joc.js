@@ -5,6 +5,8 @@ $('#mode1').on('click',function(){
 });
 
 $('#mode2').on('click',function(){
+    var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
+    localStorage.originalDifficulty2 = options.difficulty2;
     localStorage.setItem('isMode1', 'false');
     window.location.assign("./game.html");
     //console.error("Opció no implementada");

@@ -8,6 +8,7 @@ var options = function(){
     var pairs = $('#pairs');
     var difficulty = $('#dif');
     var difficulty2= $('#dif2');
+    //var originalDifficulty2
 
     var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
     pairs.val(options.pairs);
@@ -25,6 +26,7 @@ var options = function(){
             options.pairs = default_options.pairs;
             options.difficulty = default_options.difficulty;
             options.difficulty2 = default_options.difficulty2;
+            options.originalDifficulty2= default_options.difficulty2;
             pairs.val(options.pairs);
             difficulty.val(options.difficulty);
             difficulty2.val(options.difficulty2);
