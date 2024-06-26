@@ -31,9 +31,7 @@ export var game = function(){
     if (!localStorage.oriDifficulty2) {
        localStorage.oriDifficulty2 = options.difficulty2;
     }
-    if (!localStorage.oriDifficulty2) {
-        localStorage.oriDifficulty2 = options.difficulty2;
-    b}
+   
 
     var lastCard;
     var difficulty1=options.difficulty;
@@ -43,7 +41,11 @@ export var game = function(){
     var pairs=options.pairs;
     var points = 100; //he de veure com guardo els punts cada vegada que he recargo en mode2, potser aixó m'ho sobrescriu
     var temps_ini = 1000; //temps que es mostren les cartes al crearles
-
+    
+    if (!localStorage.totalpoints) {
+        localStorage.totalpoints = points;
+        console.log("totalpoints ...: ", localStorage.totalpoints);
+    }
 
     //VARIABLES només utilitzades en el mode2, també utilitza les del mode 1
     var temps_error=1000 //el temps que una carta es mostra després de cometre error
@@ -67,65 +69,58 @@ export var game = function(){
     }else{
         //FUNCIONAAAAAAAA
         console.log("mode 2 detectat: ", difficulty2)
-        switch (difficulty2) {
-            case "1":
-                console.log("case 1")
-                                    //tI, tE, pa, +P, -P
-                establir_dificultat2(2000,3000,2,10,20)
-                break
-            case "2":
-                console.log("case 2")
-                establir_dificultat2(5000,3000,2,20,30)
-                break
-            case "3":
-                console.log("case 3")
-                establir_dificultat2(4500,3000,2,25,40)
-                break
-            case "4":
-                console.log("case 4")
-                establir_dificultat2(4500,2500,3,30,50)
-                break
-            case "5":
-                console.log("case 5")
-                establir_dificultat2(4000,2500,3,35,60)
-                break
-            case "6":
-                establir_dificultat2(3500,2500,3,40,60)
-                break
-            case "7":
-                establir_dificultat2(3500,2500,4,45,70)
-                break
-            case "8":
-                establir_dificultat2(3500,2000,4,55,70)
-                break
-            case "9":
-                establir_dificultat2(3000,2000,4,60,80)
-                break
-            case "10":
-                establir_dificultat2(2500,2000,5,65,90)
-                break
-            case "11":
-                establir_dificultat2(2000,2000,5,70,100)
-                break
-            case "12":
-                establir_dificultat2(1500,1000,5,75,120)
-                break
-            case "13":
-                establir_dificultat2(1000,1000,6,80,140)
-                break
-            case "14":
-                establir_dificultat2(500,500,6,85,150)
-                break
-            case "15":
-                establir_dificultat2(500,500,6,90,160)
-                break
-            default:
-                console.log("default: ", difficulty2)
-                //mateixa configuració que nivell 1
-                establir_dificultat2(6000,3000,2,10,20)
-                break
-            
+        if (difficulty2==1){
+            console.log("case 1.1 ",pairs);
+                               //tI, tE, pa, +P, -P
+            establir_dificultat2(2000,3000,2,10,20);
+        }else if(difficulty2==2){
+            console.log("case 2.2 ",pairs);
+            establir_dificultat2(5000,3000,3,20,30);
+        }else if(difficulty2==3){
+            console.log("case 3.3 ",pairs);
+            establir_dificultat2(4500,3000,2,25,40);
+
+        }else if(difficulty2==4){
+            establir_dificultat2(4500,2500,3,30,50);
+        
+        }else if(difficulty2==5){
+            establir_dificultat2(4000,2500,3,35,60);
+        
+        }else if(difficulty2==6){
+            establir_dificultat2(3500,2500,3,40,60);
+        
+        }else if(difficulty2==7){
+            establir_dificultat2(3500,2500,4,45,70);
+        
+        }else if(difficulty2==8){
+            establir_dificultat2(3500,2500,4,55,70);
+        
+        }else if(difficulty2==9){
+            establir_dificultat2(3000,2000,4,60,80);
+        
+        }else if(difficulty2==10){
+            establir_dificultat2(2500,2000,5,65,90);
+        
+        }else if(difficulty2==11){
+            establir_dificultat2(2000,2000,5,70,100);
+        
+        }else if(difficulty2==12){
+            establir_dificultat2(1500,1000,5,75,120);
+        
+        }else if(difficulty2==13){
+            establir_dificultat2(1000,1000,6,80,140);
+        
+        }else if(difficulty2==14){
+            establir_dificultat2(500,500,6,85,150);
+        
+        }else if(difficulty2==15){
+            establir_dificultat2(500,500,6,90,160);
+        }else{
+            console.log("O NO HA ENTRAT AL ELSE");
+            establir_dificultat2(2000,3000,2,10,20);
+
         }
+
 
         //console.log("dificultat mode 2: ",difficulty2);
 
@@ -185,11 +180,21 @@ export var game = function(){
             if (lastCard){ // Segona carta
                 if (card.front === lastCard.front){
                     pairs--;
-                    points+=sum_punts;
+                    if (isMode1){
+                        points+=sum_punts;
+                    }else{
+                        console.log("totalpoints +: ", localStorage.totalpoints);
+                        localStorage.totalpoints+=sum_punts;
+                    }
+
+                    
                     //augmentar punts jugador, ha fet una correcta convinació
                     if (pairs <= 0){
-                        
-                        alert("Has guanyat amb " + points + " punts!");
+                        if (isMode1){
+                            alert("Has guanyat amb " + points + " punts!");
+                        }else{
+                            alert("Has guanyat amb " + localStorage.totalpoints + " punts!");
+                        }
                         //si estem en el mode 2, ha de cargar partida, augmentant la dificultat
                         if (isMode1){
                             window.location.replace("../");
@@ -205,7 +210,7 @@ export var game = function(){
 
                             incrementDifficulty2();
                             //localStorage.setItem('options', JSON.stringify(options));
-                            if(difficulty2<=2){
+                            if(difficulty2<=3){
                                 //guardar puntuació
                                
                                 window.location.reload();
@@ -216,6 +221,7 @@ export var game = function(){
                                 resetDifficulty2();
                                 console.log("no ha petat");
                                 localStorage.removeItem('oriDifficulty2');
+                                localStorage.removeItem('totalpoints');
 
                                 window.location.replace("../");
                             }
@@ -229,7 +235,13 @@ export var game = function(){
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=desc_punts;
+                    if (isMode1){
+                        points-=desc_punts;
+                    }else{
+                        console.log("totalpoints -: ", localStorage.totalpoints);
+                        localStorage.totalpoints-=desc_punts;
+                    }
+                    
                     //points+=sum_punts
                     //desc_punts canvia en el mode 2, punts que es descompta quan falles, default=25
                     if (points <= 0){
@@ -238,6 +250,7 @@ export var game = function(){
                         if (!isMode1){
                             resetDifficulty2();
                             localStorage.removeItem('oriDifficulty2');
+                            localStorage.removeItem('totalpoints');
                         }
                         window.location.replace("../");
                         //si estem en el mode 2, guarda la puntuació en un ranking, puntuacio.js i puntaucio.html
